@@ -44,8 +44,8 @@ export default async function DashboardPage() {
       .order('deadline').limit(3),
   ])
 
-  const monthRevenue = (salesData ?? []).reduce((s, r) => s + (r.total ?? 0), 0)
-  const totalEmd = (emdParked ?? []).reduce((s, r) => s + (r.amount ?? 0), 0)
+  const monthRevenue = (salesData ?? []).reduce((s: number, r: any) => s + (r.total ?? 0), 0)
+  const totalEmd = (emdParked ?? []).reduce((s: number, r: any) => s + (r.amount ?? 0), 0)
 
   return (
     <DashboardClient
