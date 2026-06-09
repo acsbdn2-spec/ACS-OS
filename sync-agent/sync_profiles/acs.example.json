@@ -1,0 +1,23 @@
+{
+  "item_table": "FILL_IN_TABLE_NAME",
+  "item_id_col": "FILL_IN_COLUMN",
+  "item_name_col": "FILL_IN_COLUMN",
+  "item_unit_col": "FILL_IN_COLUMN",
+  "item_group_col": "FILL_IN_COLUMN",
+
+  "stock_table": "FILL_IN_TABLE_NAME",
+  "stock_item_id_col": "FILL_IN_COLUMN",
+  "stock_qty_col": "FILL_IN_COLUMN",
+  "stock_godown_col": "FILL_IN_COLUMN",
+
+  "serial_table": "FILL_IN_TABLE_NAME",
+  "serial_item_id_col": "FILL_IN_COLUMN",
+  "serial_no_col": "FILL_IN_COLUMN",
+  "serial_status_col": "FILL_IN_COLUMN",
+  "serial_date_col": "FILL_IN_COLUMN",
+  "serial_status_available": "FILL_IN",
+  "serial_status_sold": "FILL_IN",
+
+  "godown_filter": null,
+  "supabase_store_id": "11111111-1111-1111-1111-111111111111"
+}

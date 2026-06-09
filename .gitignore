@@ -1,0 +1,15 @@
+.next/
+node_modules/
+.env.local
+.env
+*.env
+CONTINUATION-PROMPT.md
+out/
+build/
+dist/
+# Sync agent secrets
+sync-agent/.env
+sync-agent/schema_dump.json
+# OS
+.DS_Store
+Thumbs.db

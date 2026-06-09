@@ -1,0 +1,246 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────
+   THEME VARIABLES
+   :root  = light mode
+   .dark  = dark mode (toggled via html.dark class)
+───────────────────────────────────────────────────────── */
+:root {
+  --c-bg:          #f1f2f7;
+  --c-card:        #ffffff;
+  --c-card-alt:    #f5f6fb;
+  --c-border:      #e2e5f0;
+  --c-border-2:    #cdd0e4;
+
+  --fg-1: #111827;
+  --fg-2: #4b5563;
+  --fg-3: #9ca3af;
+
+  --shadow-sm:  0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:  0 4px 12px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.05);
+  --shadow-btn: 0 1px 3px rgba(79,70,229,.25), 0 1px 2px rgba(79,70,229,.15);
+
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top:    env(safe-area-inset-top, 0px);
+}
+
+.dark {
+  --c-bg:       #0e0f1a;
+  --c-card:     #181926;
+  --c-card-alt: #1f2035;
+  --c-border:   #2a2c42;
+  --c-border-2: #363852;
+
+  --fg-1: #e8eaf4;
+  --fg-2: #8c90a8;
+  --fg-3: #4a4e6a;
+
+  --shadow-sm:  0 1px 3px rgba(0,0,0,.35);
+  --shadow-md:  0 4px 12px rgba(0,0,0,.45), 0 2px 4px rgba(0,0,0,.3);
+  --shadow-btn: 0 1px 3px rgba(79,70,229,.4), 0 1px 2px rgba(79,70,229,.25);
+}
+
+/* ─────────────────────────────────────────────────────────
+   BASE
+───────────────────────────────────────────────────────── */
+body {
+  background-color: var(--c-bg);
+  color: var(--fg-1);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+/* ─────────────────────────────────────────────────────────
+   LIGHT-MODE TEXT REMAP
+   Existing components use text-gray-100..600 which are
+   hardcoded Tailwind values. In light mode those would be
+   near-invisible. These overrides remap them to readable
+   foreground colours without touching every component.
+───────────────────────────────────────────────────────── */
+html:not(.dark) .text-gray-100,
+html:not(.dark) .text-gray-200 { color: var(--fg-1) !important; }
+
+html:not(.dark) .text-gray-300,
+html:not(.dark) .text-gray-400 { color: var(--fg-2) !important; }
+
+html:not(.dark) .text-gray-500,
+html:not(.dark) .text-gray-600 { color: var(--fg-3) !important; }
+
+/* ─────────────────────────────────────────────────────────
+   LAYOUT HELPERS
+───────────────────────────────────────────────────────── */
+.pb-nav      { padding-bottom: calc(4rem + var(--safe-bottom)); }
+.lock-scroll { overflow: hidden; }
+.scroll-touch { -webkit-overflow-scrolling: touch; overflow-y: auto; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.tap-target  { min-height: 44px; min-width: 44px; }
+
+/* ─────────────────────────────────────────────────────────
+   SKELETON
+───────────────────────────────────────────────────────── */
+@keyframes shimmer { 0%,100%{opacity:1} 50%{opacity:.45} }
+.skeleton {
+  animation: shimmer 1.6s ease-in-out infinite;
+  background: var(--c-card-alt);
+  border-radius: 6px;
+}
+
+/* ─────────────────────────────────────────────────────────
+   BRAND GRADIENT
+───────────────────────────────────────────────────────── */
+.brand-gradient {
+  background: linear-gradient(135deg, #4f46e5 0%, #6d28d9 100%);
+}
+
+/* ─────────────────────────────────────────────────────────
+   OFFLINE BANNER
+───────────────────────────────────────────────────────── */
+.offline-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+  background: #d97706; color: #fff;
+  text-align: center;
+  padding: calc(var(--safe-top) + 0.25rem) 1rem 0.35rem;
+  font-size: 0.8125rem; font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* ─────────────────────────────────────────────────────────
+   CARD
+───────────────────────────────────────────────────────── */
+.card {
+  background:    var(--c-card);
+  border:        1px solid var(--c-border);
+  border-radius: 10px;
+  padding:       14px 16px;
+  box-shadow:    var(--shadow-sm);
+}
+
+/* ─────────────────────────────────────────────────────────
+   INPUTS
+───────────────────────────────────────────────────────── */
+.input {
+  width: 100%;
+  background:    var(--c-card-alt);
+  border:        1px solid var(--c-border);
+  border-radius: 8px;
+  padding:       9px 13px;
+  color:         var(--fg-1);
+  font-size:     0.9375rem;
+  outline:       none;
+  transition:    border-color .15s, box-shadow .15s;
+}
+.input::placeholder { color: var(--fg-3); }
+.input:focus {
+  border-color: #4f46e5;
+  box-shadow:   0 0 0 3px rgba(79,70,229,.15);
+}
+
+.label {
+  display:     block;
+  font-size:   0.8125rem;
+  font-weight: 500;
+  color:       var(--fg-2);
+  margin-bottom: 5px;
+}
+
+/* ─────────────────────────────────────────────────────────
+   BADGES — inline base styles to avoid @apply circular ref
+───────────────────────────────────────────────────────── */
+.badge-green,
+.badge-amber,
+.badge-red,
+.badge-blue,
+.badge-gray,
+.badge-brand {
+  display: inline-flex; align-items: center;
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-size: .73rem; font-weight: 500; line-height: 1.4;
+}
+/* Light defaults */
+.badge-green  { background: #dcfce7; color: #15803d; }
+.badge-amber  { background: #fef9c3; color: #a16207; }
+.badge-red    { background: #fee2e2; color: #b91c1c; }
+.badge-blue   { background: #dbeafe; color: #1d4ed8; }
+.badge-gray   { background: #f3f4f6; color: #374151; }
+.badge-brand  { background: #ede9fe; color: #5b21b6; }
+
+/* Dark overrides */
+.dark .badge-green  { background: rgba(21,128,61,.18);  color: #86efac; }
+.dark .badge-amber  { background: rgba(161,98,7,.18);   color: #fcd34d; }
+.dark .badge-red    { background: rgba(185,28,28,.18);  color: #fca5a5; }
+.dark .badge-blue   { background: rgba(29,78,216,.18);  color: #93c5fd; }
+.dark .badge-gray   { background: rgba(55,65,81,.35);   color: #d1d5db; }
+.dark .badge-brand  { background: rgba(91,33,182,.2);   color: #c4b5fd; }
+
+/* ─────────────────────────────────────────────────────────
+   BUTTONS
+───────────────────────────────────────────────────────── */
+.btn-primary {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             6px;
+  border-radius:   8px;
+  padding:         10px 18px;
+  font-size:       0.9375rem;
+  font-weight:     600;
+  background:      #4f46e5;
+  color:           #fff;
+  border:          none;
+  cursor:          pointer;
+  box-shadow:      var(--shadow-btn);
+  transition:      background .15s, box-shadow .15s, transform .1s;
+  user-select:     none;
+}
+.btn-primary:hover:not(:disabled) {
+  background: #4338ca;
+  box-shadow: 0 2px 6px rgba(79,70,229,.35);
+}
+.btn-primary:active:not(:disabled) { transform: scale(.98); }
+.btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+
+.btn-secondary {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             6px;
+  border-radius:   8px;
+  padding:         10px 18px;
+  font-size:       0.9375rem;
+  font-weight:     600;
+  background:      var(--c-card);
+  color:           var(--fg-1);
+  border:          1px solid var(--c-border-2);
+  cursor:          pointer;
+  box-shadow:      var(--shadow-sm);
+  transition:      background .15s, transform .1s;
+  user-select:     none;
+}
+.btn-secondary:hover:not(:disabled) { background: var(--c-card-alt); }
+.btn-secondary:active:not(:disabled) { transform: scale(.98); }
+.btn-secondary:disabled { opacity: .5; cursor: not-allowed; }
+
+.btn-danger {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             6px;
+  border-radius:   8px;
+  padding:         10px 18px;
+  font-size:       0.9375rem;
+  font-weight:     600;
+  background:      #dc2626;
+  color:           #fff;
+  border:          none;
+  cursor:          pointer;
+  transition:      background .15s, transform .1s;
+}
+.btn-danger:hover:not(:disabled) { background: #b91c1c; }
+.btn-danger:active:not(:disabled) { transform: scale(.98); }
+.btn-danger:disabled { opacity: .5; cursor: not-allowed; }
